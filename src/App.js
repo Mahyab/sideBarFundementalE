@@ -19,7 +19,7 @@ export default function App() {
     ]
     return(
         <>
-            <Accordion item/>
+            <Accordion items={items}/>
         </>
     )
 }
