@@ -6,7 +6,6 @@ export default function DropDown({options , onChange , value}) {
     const drpDownRef = useRef();
     useEffect(() => {
         function handleClick(event) {
-            console.log(event.target)
             if(!drpDownRef.current.contains(event.target)) {
                 setIsOpen(false);
             }
@@ -17,13 +16,11 @@ export default function DropDown({options , onChange , value}) {
         })
     },[])
     function handleClick() {
-        // setIsOpen((currentIsOpen) =>!currentIsOpen);
         setIsOpen(!isOpen);
     }
     function handleOptionClick(option) {
         setIsOpen(false);
-        console.log();
-        // which option is click    
+
         onChange(option);
     }
     const renderedOptions= options.map((option) =>{
