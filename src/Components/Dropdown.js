@@ -1,7 +1,21 @@
-import React, { Fragment ,useState } from "react";
-import { GoChevronDown } from "react-icons/go";
+import React, { useEffect,useRef,useState } from "react";
+import { GoChevronDown ,GoChevronLeft } from "react-icons/go";
+import Panel from "./Panel";
 export default function DropDown({options , onChange , value}) {
     const [isOpen , setIsOpen] = useState(false);
+    const drpDownRef = useRef();
+    useEffect(() => {
+        function handleClick(event) {
+            console.log(event.target)
+            if(!drpDownRef.current.contains(event.target)) {
+                setIsOpen(false);
+            }
+        }
+        document.addEventListener("click" ,handleClick ,true);
+        return(() => {
+            document.removeEventListener("click" , handleClick);
+        })
+    },[])
     function handleClick() {
         // setIsOpen((currentIsOpen) =>!currentIsOpen);
         setIsOpen(!isOpen);
@@ -11,18 +25,17 @@ export default function DropDown({options , onChange , value}) {
         console.log();
         // which option is click    
         onChange(option);
-        console.log(option);
     }
     const renderedOptions= options.map((option) =>{
             return <div className="hover:bg-sky-100 rounded cursor-pointer p-1" onClick={() => handleOptionClick(option)} key={option.value}>{option.label}</div>
     })
     return(
-        <div className="w-45 relative ">
-            <div className="flex justify-between items-center cursor-pointer border rounded p-3 shadow bg-white w-fulll "  onClick={handleClick}>
-                {value?.label || "SELECT ..."}
-                <GoChevronDown className="font-bold text-lg"/>
-                </div>
-          {isOpen && <div className="absolute top-full border rounded p-3 shadow bg-white w-full ">{renderedOptions}</div>}
+        <div ref={drpDownRef} className="w-48 relative ">
+            <Panel className="flex justify-between items-center cursor-pointer"   onClick={handleClick}>
+                {value?.label || "SELECT ..."} 
+                {isOpen ? <GoChevronDown className="font-bold text-lg"/>: <GoChevronLeft className="font-bold text-lg "/>}
+                </Panel>
+          {isOpen && <Panel className="absolute top-full">{renderedOptions}</Panel>}
         </div>
     )
 }
