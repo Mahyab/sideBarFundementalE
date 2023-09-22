@@ -1,25 +1,20 @@
 import "./index.css";
-import React from "react";
-import ButtonPage from "./pages/ButtonPage";
-import Accordion from "./Components/Accordion";
+import React, { useState } from "react";
+import DropDown from "./Components/Dropdown";
 export default function App() {
-    const  items=[
-        {
-            label:"can i use a react project ",
-            content:"are you a programmer baby "
-        },
-        {
-            label:"can i use a sql project ",
-            content:"are you a programmer baby "
-        },
-        {
-            label:"can i use a Angular project ",
-            content:"are you a programmer baby "
-        },
-    ]
+    const [selection , setSelection] = useState(null);
+    function handleSelect(option) {
+        setSelection(option)
+    }
+        const options = [
+            {label:"red" , value:"red"},
+            {label:"blue" , value:"blue"},
+            {label:"green" , value:"green"},
+            {label:"yellow" , value:"yellow"}
+        ]
     return(
         <>
-            <Accordion items={items}/>
+            <DropDown options={options} onChange={handleSelect} value={selection} />
         </>
     )
 }

@@ -12,6 +12,7 @@ export default function Accordion({items}) {
                 return nextIndex;
             }
         })
+
     }
     const renderItems = items.map((item , index) => {
         const isExpended = index === expandIndex;
