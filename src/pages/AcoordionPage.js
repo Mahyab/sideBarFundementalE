@@ -1,7 +1,6 @@
-import "./index.css";
+import "../index.css";
 import React from "react";
-import ButtonPage from "./pages/ButtonPage";
-import Accordion from "./Components/Accordion";
+import Accordion from "../Components/Accordion";
 export default function AccordionPage() {
     const  items=[
         {
