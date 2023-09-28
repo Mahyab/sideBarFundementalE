@@ -4,6 +4,7 @@ import Route from "./Components/Route";
 import AccordionPage from "./pages/AcoordionPage";
 import ButtonPage from "./pages/ButtonPage";
 import Sidebar from "./Components/Sidebar";
+import ModalPage from "./pages/ModalPage";
 export default function App() {
 
     return(
@@ -18,6 +19,9 @@ export default function App() {
                 </Route>
                 <Route path="/buttons">
                     <ButtonPage/>
+                </Route>
+                <Route path="/modal">
+                    <ModalPage/>
                 </Route>
             </div>
         </div>

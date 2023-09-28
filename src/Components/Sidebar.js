@@ -4,6 +4,7 @@ export default function Sidebar() {
         {label: "Dropdown", path: "/"},
         {label: "Accordion", path: "/accordion"},
         {label: "Buttons", path: "/buttons"},
+        {label: "Modal", path: "/modal"},
     ]
     const renderLinks = links.map((link) => {
         return <Link className="mt-5 " key={link.label} to={link.path} activeClassName="font-bold border-l-4 border-blue-500 pl-2">{link.label}</Link>
