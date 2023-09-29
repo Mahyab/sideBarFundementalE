@@ -13,19 +13,26 @@ export default function TablePage() {
         },
         {
             label:"Color",
-            render: (fruit) => fruit.color
+            render: (fruit) => <div className={`p-3 m-2 ${fruit.color}`}></div>
         },
         {
             label:"score",
             render: (fruit) => fruit.score
-         },
+        },
+        {
+            label:"score squred",
+            render:(fruit) => (fruit.score * fruit.score)
+        } 
         
-    ]
+    ];
+    function keyFn(fruit) {
+        return fruit.name
+    }
 
 
     return(
         <div>
-          <Table data={data} config={config}/>
+          <Table keyFn= {keyFn} data={data} config={config}/>
         </div>
     )
 }

@@ -1,20 +1,21 @@
 import { render } from "@testing-library/react";
 
-export default function Table({data ,config}) {
-    const renderedRows = data.map((fruit) =>{
+export default function Table({data ,config , keyFn}) {
+    const renderedRows = data.map((rowData) =>{
+        const renderedCells = config.map((column) =>{
+            return (
+                <td className={`p-2`} key={column.label}>{column.render(rowData)}</td>
+            );
+        })
         return (
-            <tr className="border-b" key={fruit.name}>
-                <td className="p-3">{fruit.name}</td>
-                <td className="p-3">
-                    <div className={`p-3 m-2 ${fruit.color}`}></div>
-                </td>
-                <td className="p-3">{fruit.score}</td>
+            <tr className="border-b" key={keyFn(rowData)}>
+                {renderedCells}
             </tr>
         )
     });
     const renderedTableHeaders = config.map((column) => {
         return(
-            <th key={column.label}>{column.label}</th>
+            <th className="px-2" key={column.label}>{column.label}</th>
         )
     })
     return(
