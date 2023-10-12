@@ -5,7 +5,7 @@ export default function TablePage() {
         {name:"apple",color:"bg-red-500", score:3},
         {name:"Banana",color:"bg-yellow-500", score:4},
         {name:"Lime",color:"bg-green-500", score:5},
-    ];
+    ]; 
     const config = [
         {
             label:"Name" , 
@@ -17,7 +17,8 @@ export default function TablePage() {
         },
         {
             label:"score",
-            render: (fruit) => fruit.score
+            render: (fruit) => fruit.score, 
+            header: () => <th className="px-2">Score</th>
         },
         {
             label:"score squred",
