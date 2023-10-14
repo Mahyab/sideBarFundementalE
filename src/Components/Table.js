@@ -15,7 +15,7 @@ export default function Table({data ,config , keyFn}) {
     });
     const renderedTableHeaders = config.map((column) => {
         if(column.header) {
-            return <React.Fragment key={column.label}>{ column.header()}</React.Fragment>
+            return <React.Fragment  key={column.label}>{ column.header()}</React.Fragment>
 
         }
         return(

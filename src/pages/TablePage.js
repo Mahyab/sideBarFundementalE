@@ -1,4 +1,4 @@
-import Table from "../Components/Table"
+import SoetableTable from "../Components/SortableTable"
 export default function TablePage() {
     const data = [
         {name:"orange",color:"bg-orange-500", score:5},
@@ -9,7 +9,8 @@ export default function TablePage() {
     const config = [
         {
             label:"Name" , 
-            render: (fruit) => fruit.name     
+            render: (fruit) => fruit.name,     
+            sortValue: (fruit) => fruit.name
         },
         {
             label:"Color",
@@ -17,12 +18,13 @@ export default function TablePage() {
         },
         {
             label:"score",
-            render: (fruit) => fruit.score, 
-            header: () => <th className="px-2">Score</th>
+            render: (fruit) => fruit.score,
+            sortValue: (fruit) => fruit.score
         },
         {
             label:"score squred",
-            render:(fruit) => (fruit.score * fruit.score)
+            render:(fruit) => (fruit.score * fruit.score),
+            sortValue:(fruit)=> (fruit.score * fruit.score)
         } 
         
     ];
@@ -33,7 +35,7 @@ export default function TablePage() {
 
     return(
         <div>
-          <Table keyFn= {keyFn} data={data} config={config}/>
+          <SoetableTable keyFn= {keyFn} data={data} config={config}/>
         </div>
     )
 }
