@@ -54,7 +54,7 @@ export default function SoetableTable(props) {
     let sortedData = data;
     if(sortedData && sortBy) {
         const {sortValue} =config.find(column =>column.label === sortBy);
-        //  create a new prop arra
+        //  create a new prop array
         sortedData = [...data].sort((objA , objB) => {
         const firstvalue = sortValue(objA);
         const secontValue= sortValue(objB);
