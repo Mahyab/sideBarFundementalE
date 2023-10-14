@@ -1,16 +1,8 @@
-import { useState , useEffect } from "react";
 import Button from "../Components/Button";
- 
+import useCounter from "../hooks/useCounter";
+
 export default function CounterPage({initailValue}){
-    const [counter , setCouter] = useState(initailValue);
-
-    useEffect(() => {
-        console.log(counter);
-    } ,[counter]);
-
-    function  handleClick() {
-        setCouter(counter +1)
-    }
+   const {counter ,handleClick} = useCounter(initailValue);
     return(
         <div>
             <h1>the Count is {counter}</h1>
