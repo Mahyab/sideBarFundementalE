@@ -32,7 +32,13 @@ export default function SoetableTable(props) {
 
     }
     function handleClick(label) {
-        console.log(label);
+        //  fixed the column cycle hierarchy
+        //  the code is not clean hear  :( 
+        if(sortBy && label !== sortBy) {
+            setSortBy(label);
+            setSortOrder("asc");
+            return
+        }
         if(sortOrder === null){
             setSortOrder("asc");
             setSortBy(label)
@@ -76,7 +82,7 @@ export default function SoetableTable(props) {
                  </th>
         }
     });
-     return <div>
+     return <div> 
         <Table {...props} data={sortedData} config={updatedConfig} />
      </div>
 }
