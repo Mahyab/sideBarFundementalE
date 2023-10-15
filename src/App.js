@@ -7,6 +7,7 @@ import Sidebar from "./Components/Sidebar";
 import ModalPage from "./pages/ModalPage";
 import TablePage from "./pages/TablePage";
 import CounterPage from "./pages/CounterPage";
+import RefactorCounterPage from "./pages/RefactorCounterPage";
 export default function App() {
 
     return(
@@ -30,6 +31,9 @@ export default function App() {
                 </Route>
                 <Route path="/counter">
                     <CounterPage initailValue={10}/>
+                </Route>
+                <Route path="/refcounter">
+                    <RefactorCounterPage initailValue={1}/>
                 </Route>
             </div>
         </div>
