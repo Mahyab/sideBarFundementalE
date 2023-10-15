@@ -1,10 +1,9 @@
-import { useState } from "react";
 import Table from "./Table";
+import useSort from "../hooks/useSort";
 import {BiUpArrow ,BiDownArrow } from "react-icons/bi"
 export default function SoetableTable(props) {
-    const [sortOrder , setSortOrder] = useState(null);
-    const [sortBy , setSortBy] = useState(null);  
     const {config , data} = props;
+    const {sortBy , sortOrder , sortedData , setSortColumn:handleClick} = useSort(data, config)
 
     function getIcons(label , sortBy , sortOrder){
         if(label !==sortBy ) {
@@ -31,43 +30,7 @@ export default function SoetableTable(props) {
 
 
     }
-    function handleClick(label) {
-        //  fixed the column cycle hierarchy
-        //  the code is not clean hear  :( 
-        if(sortBy && label !== sortBy) {
-            setSortBy(label);
-            setSortOrder("asc");
-            return
-        }
-        if(sortOrder === null){
-            setSortOrder("asc");
-            setSortBy(label)
-        } else if(sortOrder === "asc") {
-            setSortOrder("desc");
-            setSortBy(label)
-        }else if(sortOrder === "desc") {
-            setSortOrder(null);
-            setSortBy(null)
-        }
-
-    }
-    let sortedData = data;
-    if(sortedData && sortBy) {
-        const {sortValue} =config.find(column =>column.label === sortBy);
-        //  create a new prop array
-        sortedData = [...data].sort((objA , objB) => {
-        const firstvalue = sortValue(objA);
-        const secontValue= sortValue(objB);
-        const reverseSortOrder = sortOrder === "asc" ? 1 : -1;
-        if(typeof firstvalue === "string") {
-            return firstvalue.localeCompare(secontValue) * reverseSortOrder;
-        }else {
-            return (firstvalue - secontValue) * reverseSortOrder
-        }
-
-        })
-        
-    }   
+  
     const updatedConfig = config.map((column) =>{
         if(!column.sortValue) {
             return column
